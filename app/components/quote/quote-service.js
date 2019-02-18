@@ -1,11 +1,11 @@
-let url = '//bcw-getter.herokuapp.com/?url=';
-let url2 = 'https://favqs.com/api/qotd';
-let apiUrl = url + encodeURIComponent(url2);
+let quoteUrl = '//bcw-getter.herokuapp.com/?url=';
+let quoteUrl2 = 'https://favqs.com/api/qotd';
+let quoteApiUrl = quoteUrl + encodeURIComponent(quoteUrl2);
 //Do Not Edit above we have to go through the bcw-getter to access this api
 
 
 const quoteApi = axios.create({
-	baseURL: apiUrl,
+	baseURL: quoteApiUrl,
 	timeout: 3000
 });
 
