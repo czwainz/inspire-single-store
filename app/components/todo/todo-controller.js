@@ -1,8 +1,7 @@
 import TodoService from "./todo-service.js";
 
-
-
 var todoService = new TodoService
+let _store
 
 // Use this getTodos function as your callback for all other edits
 function getTodos() {
@@ -19,7 +18,8 @@ function draw(todos) {
 
 
 export default class TodoController {
-	constructor() {
+	constructor(store) {
+		_store = store
 		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
 	}
 	// You will need four methods

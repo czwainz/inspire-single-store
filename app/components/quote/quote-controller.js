@@ -2,9 +2,12 @@ import QuoteService from "./quote-service.js";
 
 let qs = new QuoteService
 
+let _store
+
 
 export default class QuoteController {
-	constructor() {
+	constructor(store) {
+		_store = store
 		this.getQuote()
 	}
 

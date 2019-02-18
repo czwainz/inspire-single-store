@@ -1,12 +1,13 @@
 import WeatherService from "./weather-service.js";
 
 var weatherService = new WeatherService()
-
+let _store
 
 export default class WeatherController {
 
-	constructor() {
+	constructor(store) {
 		//this will fire off get weather right away
+		_store = store
 		this.getWeather()
 	}
 	getWeather() {
