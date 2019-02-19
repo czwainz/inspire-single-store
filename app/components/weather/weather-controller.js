@@ -1,19 +1,27 @@
-import WeatherService from "./weather-service.js";
+import Store from "../../store.js";
 
-var weatherService = new WeatherService()
-let _store
+
+
+function draw() {
+	// console.log('tempy temp', Store.Weather)
+	let kTemp = Store.Weather.main.temp
+	let fTemp = Math.ceil((kTemp * (9 / 5)) - 459.67);
+	document.getElementById("weather").innerHTML = `
+	<div class="d-flex align-items-start">
+		<h2 style="text-shadow: 0px 0px 3px whitesmoke;"><strong>${fTemp}°</strong></h2>
+	</div>
+	`
+
+}
+
 
 export default class WeatherController {
-
-	constructor(store) {
+	constructor() {
 		//this will fire off get weather right away
-		_store = store
-		this.getWeather()
+		Store.addSubscriber('weather', draw)
+
 	}
 	getWeather() {
-		weatherService.getWeather(weather => {
-			console.log(weather);
-			//What can you do with this weather object?
-		})
+		Store.getWeather()
 	}
 }

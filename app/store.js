@@ -1,5 +1,6 @@
 import QuoteService from "./components/quote/quote-service.js";
 import ImageService from "./components/image/image-service.js";
+import WeatherService from "./components/weather/weather-service.js"
 
 //PRIVATE
 let _state = {
@@ -62,7 +63,7 @@ export default class Store {
   }
 
   static async getWeather() {
-
+    setState('weather', await WeatherService.getWeather())
   }
 
   static async init() {

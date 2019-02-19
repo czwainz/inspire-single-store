@@ -9,14 +9,18 @@ const weatherApi = axios.create({
 
 export default class WeatherService {
 
-	getWeather(callWhenDone) {
+	static getWeather() {
 		console.log('Calling the Weatherman')
-		weatherApi().then(function (res) {
-			// HEY FUN FACT 
-			// Have you ever wanted to know the temperature measured in kelvin? That is what this data returns!
-			// res.data.temp is the temperature in Kelvin
-			// You should probably convert the temperature data to either F or C
-			callWhenDone(res.data);
+		return weatherApi().then(function (res) {
+			// console.log('weather Data:', res.data)
+			return res.data
 		})
+			.catch(err => console.error(err))
+		// HEY FUN FACT 
+		// Have you ever wanted to know the temperature measured in kelvin? That is what this data returns!
+		// res.data.temp is the temperature in Kelvin
+		// You should probably convert the temperature data to either F or C
+
+
 	}
 }
