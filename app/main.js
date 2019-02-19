@@ -4,18 +4,16 @@ import QuoteController from "./components/quote/quote-controller.js"
 import TodoController from "./components/todo/todo-controller.js"
 
 import Store from "./store.js"
-
-let store = new Store()
 // HEY WHERE ARE ALL OF YOUR CONTROLLERS??
 class app {
   constructor() {
     this.controllers = {
-      weatherController: new WeatherController(store),
-      imageController: new ImageController(store),
-      quoteController: new QuoteController(store),
-      todoController: new TodoController(store)
+      weatherController: new WeatherController(),
+      imageController: new ImageController(),
+      quoteController: new QuoteController(),
+      todoController: new TodoController()
     }
-
+    Store.init()
   }
 }
 

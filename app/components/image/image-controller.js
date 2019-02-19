@@ -1,15 +1,16 @@
-//Your ImageService is a global class what can you do here to instantiate it?
+import Store from "../../store.js";
 
-let _store
-
+function draw() {
+  console.log('drawing the image', Store.Image)
+}
 
 export default class ImageController {
-  constructor(store) {
-    _store = store
+  constructor() {
+    Store.addSubscriber('image', draw)
   }
 
   getImage() {
-
+    Store.getImage()
   }
 
 }

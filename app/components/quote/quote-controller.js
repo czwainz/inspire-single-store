@@ -1,18 +1,21 @@
-import QuoteService from "./quote-service.js";
+import Store from "../../store.js";
 
-let qs
-
-
+function drawQuote() {
+	let quote = Store.Quote
+	document.querySelector('#quote').innerHTML = `
+	<div class="card">
+		<h3>${quote.body}</h3>
+		<button onclick="app.controllers.quoteController.GetQuote()">Lame</button>
+	</div>
+	`
+}
 
 export default class QuoteController {
-	constructor(store) {
-		qs = new QuoteService(store)
-		this.getQuote()
+	constructor() {
+		Store.addSubscriber('quote', drawQuote)
 	}
 
-	getQuote() {
-		qs.getQuote(function (quote) {
-			console.log('What is the quote', quote)
-		})
+	GetQuote() {
+		Store.getQuote()
 	}
 }

@@ -1,5 +1,3 @@
-let _store
-
 let quoteUrl = '//bcw-getter.herokuapp.com/?url=';
 let quoteUrl2 = 'https://favqs.com/api/qotd';
 let quoteApiUrl = quoteUrl + encodeURIComponent(quoteUrl2);
@@ -7,19 +5,24 @@ let quoteApiUrl = quoteUrl + encodeURIComponent(quoteUrl2);
 
 
 const quoteApi = axios.create({
-	baseURL: apiUrl,
+	baseURL: quoteApiUrl,
 	timeout: 3000
 });
 
 
 export default class QuoteService {
-	constructor(store) {
-		_store = store
-	}
-	getQuote(callWhenDone) {
-		console.log('looking for some good quotes')
-		quoteApi().then((res) => {
-			callWhenDone(res.data)
-		})
+	// callWhenDone
+	static async GetQuote() {
+		try {
+			let response = await quoteApi()
+			return response.data.quote
+		} catch (err) {
+			console.error(err)
+		}
+		// .then((res) => {
+		// 	console.log('this the quote', res.data.quote)
+		// 	return res.data.quote
+		// }).
+		// catch(err => console.error(err))
 	}
 }

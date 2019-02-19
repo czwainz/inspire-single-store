@@ -1,38 +1,75 @@
+import QuoteService from "./components/quote/quote-service.js";
+import ImageService from "./components/image/image-service.js";
+
 //PRIVATE
-
-let store;
-
 let _state = {
-  images: {},
-  quotes: {},
+  image: {},
+  quote: {},
   todos: [],
   weather: {},
 }
 
 let _subscribers = {
-  images: {},
-  quotes: {},
+  image: [],
+  quote: [],
   todos: [],
-  weather: {},
+  weather: [],
 }
 
-
-
+function setState(prop, value) {
+  console.log('setting state', prop, value);
+  _state[prop] = value
+  _subscribers[prop].forEach(fn => fn());
+}
 
 //PUBLIC
 export default class Store {
-  constructor() {
-    if (store) {
-      return store
-    }
-    store = this
+
+  static addSubscriber(dataName, fn) {
+    _subscribers[dataName].push(fn)
   }
-  addSubscriber(dataName, fn) {
-    _state.Subscribers[dataName].push(fn)
+
+  static get Weather() {
+    return _state.weather
   }
-  setState(prop, value) {
-    _state[prop] = value
-    _subscribers.forEach(fn => fn());
+
+  static get Image() {
+    return _state.image
+  }
+
+  static get Quote() {
+    return _state.quote
+  }
+
+  static async getQuote() {
+    setState('quote', await QuoteService.GetQuote())
+  }
+
+  static async getImage() {
+    ImageService.getImage()
+      .then(image => setState('image', image))
+  }
+
+  //Todo Actions
+  static async getTodos() {
+
+  }
+  static async addTodos() {
+
+  }
+  static async deleteTodo() {
+
+  }
+
+  static async getWeather() {
+
+  }
+
+  static async init() {
+    this.getQuote()
+    this.getImage()
+    this.getTodos()
+    this.getWeather()
   }
 
 }
