@@ -1,56 +1,26 @@
 //PRIVATE
 //IMAGES
-const imageUrl = '//bcw-getter.herokuapp.com/?url=';
-const imageUrl2 = 'http://www.splashbase.co/api/v1/images/search?query=mountains'
-const imageApiUrl = imageUrl + encodeURIComponent(imageUrl2);
-
-
-const imgApi = axios.create({
-  baseURL: imageApiUrl,
-  timeout: 3000
-});
 
 //QUOTES 
-let quoteUrl = '//bcw-getter.herokuapp.com/?url=';
-let quoteUrl2 = 'https://favqs.com/api/qotd';
-let quoteApiUrl = quoteUrl + encodeURIComponent(quoteUrl2);
-//Do Not Edit above we have to go through the bcw-getter to access this api
+let _state = {
+  images: {},
+  quotes: {},
+  todos: [],
+  weather: {},
+}
 
-
-const quoteApi = axios.create({
-  baseURL: quoteApiUrl,
-  timeout: 3000
-});
+let _subscribers = []
 
 
 //TODO
-const todoApi = axios.create({
-  baseURL: 'https://bcw-sandbox.herokuapp.com/api/YOURNAME/todos/',
-  timeout: 3000
-});
 
 //WEATHER
-const weatherUrl = '//bcw-getter.herokuapp.com/?url=';
-const weatherUrl2 = 'http://api.openweathermap.org/data/2.5/weather?q=boise&&APPID=bd82255fd0a21fa1238699b9eda2ee35'
-const weatherApiUrl = weatherUrl + encodeURIComponent(weatherUrl2);
-
-const weatherApi = axios.create({
-  baseURL: weatherApiUrl,
-  timeout: 3000
-});
 
 
 //PUBLIC
 export default class Store {
   //IMAGES
-  getImage(callWhenDone) {
-    // ^^^^^^^ How do you call this function?
-    console.log("Looking for a good pic")
-    imgApi().then(res => {
-      console.log('Image Data:', res.data)
-      callWhenDone(res.data)
-    })
-  }
+
   //QUOTES 
   getQuote(callWhenDone) {
     console.log('looking for some good quotes')
