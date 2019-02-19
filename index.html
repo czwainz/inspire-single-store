@@ -17,18 +17,25 @@
 		</div>
 
 		<div class="row ">
-			<div class="col-12" id="quote">
+			<div class="col-12 justify-content-center d-flex" id="quote">
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-12" id="todo">
-				<form onsubmit=""></form>
+				<form onsubmit="app.controllers.todoController.addTodoFromForm(event)">
+					<div class="form-group col-6">
+						<input type="text" name="description" class="form-control no-border bg-light" placeholder="Add To Do">
+						<Button type="submit"></Button>
+					</div>
+				</form>
 				A Todo List
 			</div>
 		</div>
 
 	</div>
+
+
 
 
 

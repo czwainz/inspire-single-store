@@ -1,17 +1,18 @@
 import QuoteService from "./components/quote/quote-service.js";
 import ImageService from "./components/image/image-service.js";
 import WeatherService from "./components/weather/weather-service.js"
+import TodoService from "./components/todo/todo-service.js"
 
 //PRIVATE
 let _state = {
-  image: {},
+  images: [],
   quote: {},
   todos: [],
-  weather: {},
+  weather: {}
 }
 
 let _subscribers = {
-  image: [],
+  images: [],
   quote: [],
   todos: [],
   weather: [],
@@ -34,8 +35,8 @@ export default class Store {
     return _state.weather
   }
 
-  static get Image() {
-    return _state.image
+  static get Images() {
+    return _state.images
   }
 
   static get Quote() {
@@ -46,20 +47,24 @@ export default class Store {
     setState('quote', await QuoteService.GetQuote())
   }
 
-  static async getImage() {
-    ImageService.getImage()
-      .then(image => setState('image', image))
+  static async getImages() {
+    ImageService.getImages()
+      .then(images => setState('images', images.images))
   }
 
   //Todo Actions
   static async getTodos() {
-
+    setState('todos', await TodoService.getTodos())
   }
-  static async addTodos() {
-
+  static async addTodos(payload) {
+    setState('todos', await TodoService.AddTodo(payload))
   }
-  static async deleteTodo() {
+  static async toggleTodoStatus(todoId) {
+    setState('todos', await TodoService.toggleTodoStatus(todoId))
+  }
 
+  static async deleteTodo(todoId) {
+    setState('todos', await TodoService.DeleteTodo(todoId))
   }
 
   static async getWeather() {
@@ -68,7 +73,7 @@ export default class Store {
 
   static async init() {
     this.getQuote()
-    this.getImage()
+    this.getImages()
     this.getTodos()
     this.getWeather()
   }

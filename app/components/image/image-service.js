@@ -11,7 +11,7 @@ const imgApi = axios.create({
 });
 
 export default class ImageService {
-	static getImage() {
+	static getImages() {
 		return imgApi().then(res => {
 			console.log('Image Data:', res.data)
 			return res.data

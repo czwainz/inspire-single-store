@@ -1,21 +1,23 @@
 import Store from "../../store.js";
+import ImageService from "./image-service.js";
+
 
 function draw() {
-
-  console.log('drawing the image', Store.Image)
-  let imageArr = Store.Image
+  console.log('drawing the images', Store.Images)
+  let imageArr = Store.Images
   let imageIndex = Math.floor(Math.random() * imageArr.length)
-  let image = imageArr[imageIndex].url
-  document.querySelector('body').setAttribute('url', image)
+  let image = imageArr[imageIndex]
+  document.body.style.backgroundImage = `url(${image.url})`
 }
 
 export default class ImageController {
   constructor() {
-    Store.addSubscriber('image', draw)
+    Store.addSubscriber('images', draw)
   }
 
-  getImage() {
-    Store.getImage()
+  getImages() {
+    ImageService.getImages()
+    Store.getImages()
   }
 
 }

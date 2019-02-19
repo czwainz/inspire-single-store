@@ -3,7 +3,7 @@ import Store from "../../store.js";
 
 
 function draw() {
-	// console.log('tempy temp', Store.Weather)
+	console.log('tempy temp', Store.Weather)
 	let kTemp = Store.Weather.main.temp
 	let fTemp = Math.ceil((kTemp * (9 / 5)) - 459.67);
 	document.getElementById("weather").innerHTML = `

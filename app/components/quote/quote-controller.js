@@ -3,10 +3,12 @@ import Store from "../../store.js";
 function drawQuote() {
 	let quote = Store.Quote
 	document.querySelector('#quote').innerHTML = `
-	<div class="card">
+	<div class="card col-8 bg-transparent mt-5">
 		<h3>${quote.body}</h3>
-		<button onclick="app.controllers.quoteController.GetQuote()">Lame</button>
-	</div>
+		<div class="card-body justify-content-center d-flex">
+		<button class="btn btn-dark btn-sm" onclick="app.controllers.quoteController.GetQuote()">New</button>
+	  </div>
+		</div>
 	`
 }
 

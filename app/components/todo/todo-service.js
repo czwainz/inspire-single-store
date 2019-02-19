@@ -1,5 +1,3 @@
-let _store
-
 const todoApi = axios.create({
 	baseURL: 'https://bcw-sandbox.herokuapp.com/api/CHRISSYZ/todos/',
 	timeout: 3000
@@ -9,23 +7,18 @@ function logError(e) {
 	console.log(e)
 }
 
-
-let todoList = []
-
 export default class TodoService {
-	store
-
-	getTodos(draw) {
+	static getTodos() {
 		console.log("Getting the Todo List")
 		todoApi.get('')
-			.then((res) => { // <-- WHY IS THIS IMPORTANT????
-
+			.then((res) => {
+				console.log('todo', res.data.data)
+				return res.data.data
 			})
 			.catch(logError)
 	}
 
-	addTodo(todo) {
-		// WHAT IS THIS FOR???
+	static addTodo(todo) {
 		todoApi.post('', todo)
 			.then(function (res) { // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
 
@@ -33,7 +26,7 @@ export default class TodoService {
 			.catch(logError)
 	}
 
-	toggleTodoStatus(todoId) {
+	static toggleTodoStatus(todoId) {
 		// MAKE SURE WE THINK THIS ONE THROUGH
 		//STEP 1: Find the todo by its index **HINT** todoList
 
@@ -47,7 +40,11 @@ export default class TodoService {
 			.catch(logError)
 	}
 
-	removeTodo() {
+	removeTodo(todoId) {
+		todoApi.delete(todoId)
+			.then(res => {
+
+			})
 		// Umm this one is on you to write.... The method is a DELETE
 
 	}
