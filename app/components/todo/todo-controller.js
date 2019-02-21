@@ -15,6 +15,7 @@ function draw(todos) {
 		template += `
 			<div class="col-4 card">
 				<h3>${todo}</h3>
+				<i class="fas fa-dumpster-fire"></i>
 			</div>
 		`
 	}
@@ -41,6 +42,9 @@ export default class TodoController {
 		// TAKE THE INFORMATION FORM THE FORM
 		var form = e.target
 		var todo = {
+			description: ,      //has to be a string
+			completed: ,       //the server will do this for you
+			user:
 			// DONT FORGET TO BUILD YOUR TODO OBJECT
 		}
 
