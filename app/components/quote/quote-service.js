@@ -11,7 +11,6 @@ const quoteApi = axios.create({
 
 
 export default class QuoteService {
-	// callWhenDone
 	static async GetQuote() {
 		try {
 			let response = await quoteApi()

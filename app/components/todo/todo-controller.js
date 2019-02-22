@@ -1,14 +1,11 @@
 import Store from "../../store.js"
 
-// Use this getTodos function as your callback for all other edits
 function getTodos() {
-	//FYI DONT EDIT ME :)
 	Store.getTodos()
 }
 
 function draw(todos) {
-	//WHAT IS MY PURPOSE?
-	//BUILD YOUR TODO TEMPLATE HERE
+
 	var template = ''
 	for (let i = 0; i < todos.length; i++) {
 		let todo = todos[i];
@@ -20,14 +17,13 @@ function draw(todos) {
 		`
 	}
 	document.querySelector('#todos').innerHTML = template
-	//DONT FORGET TO LOOP
 }
 
 
 export default class TodoController {
 	constructor() {
 		Store.addSubscriber('todos', draw)
-		// IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
+		Store.getTodos()
 	}
 	// You will need four methods
 	// getTodos should request your api/todos and give an array of todos to your callback fn
@@ -42,16 +38,15 @@ export default class TodoController {
 		// TAKE THE INFORMATION FORM THE FORM
 		var form = e.target
 		var todo = {
-			description: ,      //has to be a string
-			completed: ,       //the server will do this for you
-			user:
-			// DONT FORGET TO BUILD YOUR TODO OBJECT
+			description: form.description.value
+
 		}
 
 		//PASSES THE NEW TODO TO YOUR SERVICE
 		//DON'T FORGET TO REDRAW THE SCREEN WITH THE NEW TODO
 		//YOU SHOULDN'T NEED TO CHANGE THIS
-		Store.addTodo(todo, getTodos)
+		Store.addTodo(todo)
+		Store.getTodos()
 		//^^^^^^^ EXAMPLE OF HOW TO GET YOUR TOODOS AFTER AN EDIT
 	}
 

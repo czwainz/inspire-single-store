@@ -21,23 +21,21 @@ export default class TodoService {
 	static addTodo(todo) {
 		todoApi.post('', todo)
 			.then(function (res) { // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
-
+				let data = res.data.data
+				return data
 			})
 			.catch(logError)
 	}
 
-	static toggleTodoStatus(todoId) {
-		// MAKE SURE WE THINK THIS ONE THROUGH
-		//STEP 1: Find the todo by its index **HINT** todoList
+	static toggleTodoStatus(todoId, todo) {
 
-		var todo = {} ///MODIFY THIS LINE
-
-		//STEP 2: Change the completed flag to the opposite of what is is **HINT** todo.completed = !todo.completed
 		todoApi.put(todoId, todo)
 			.then(function (res) {
 				//DO YOU WANT TO DO ANYTHING WITH THIS?
+
 			})
 			.catch(logError)
+
 	}
 
 	removeTodo(todoId) {
