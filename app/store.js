@@ -31,6 +31,10 @@ export default class Store {
     _subscribers[dataName].push(fn)
   }
 
+  static get Todos() {
+    return _state.todos
+  }
+
   static get Weather() {
     return _state.weather
   }
@@ -57,14 +61,14 @@ export default class Store {
     setState('todos', await TodoService.getTodos())
   }
   static async addTodo(payload) {
-    setState('todos', await TodoService.AddTodo(payload))
+    setState('todos', await TodoService.addTodo(payload))
   }
-  static async toggleTodoStatus(todoId) {
-    setState('todos', await TodoService.toggleTodoStatus(todoId))
+  static async toggleTodoStatus(todoId, todo) {
+    setState('todos', await TodoService.toggleTodoStatus(todoId, todo))
   }
 
   static async deleteTodo(todoId) {
-    setState('todos', await TodoService.DeleteTodo(todoId))
+    setState('todos', await TodoService.removeTodo(todoId))
   }
 
   static async getWeather() {

@@ -28,22 +28,21 @@ export default class TodoService {
 	}
 
 	static toggleTodoStatus(todoId, todo) {
-
 		todoApi.put(todoId, todo)
 			.then(function (res) {
-				//DO YOU WANT TO DO ANYTHING WITH THIS?
+
 
 			})
 			.catch(logError)
 
 	}
 
-	removeTodo(todoId) {
+	static removeTodo(todoId) {
 		todoApi.delete(todoId)
 			.then(res => {
 
 			})
-		// Umm this one is on you to write.... The method is a DELETE
+
 
 	}
 

@@ -33,10 +33,10 @@ export default class TodoController {
 	// **** HINT: Everytime you make a change to any todo don't forget to get the todo list again
 
 
-	addTodoFromForm(e) {
-		e.preventDefault() // <-- hey this time its a freebie don't forget this
+	addTodoFromForm(event) {
+		event.preventDefault() // <-- hey this time its a freebie don't forget this
 		// TAKE THE INFORMATION FORM THE FORM
-		var form = e.target
+		var form = event.target
 		var todo = {
 			description: form.description.value
 
@@ -50,9 +50,9 @@ export default class TodoController {
 		//^^^^^^^ EXAMPLE OF HOW TO GET YOUR TOODOS AFTER AN EDIT
 	}
 
-	toggleTodoStatus(todoId) {
+	toggleTodoStatus(todoId, todo) {
 		// asks the service to edit the todo status
-		Store.toggleTodoStatus(todoId, getTodos)
+		Store.toggleTodoStatus(todoId, todo)
 		// YEP THATS IT FOR ME
 	}
 
