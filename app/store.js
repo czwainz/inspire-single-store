@@ -63,6 +63,7 @@ export default class Store {
   static async addTodo(payload) {
     setState('todos', await TodoService.addTodo(payload))
   }
+
   static async toggleTodoStatus(todoId, todo) {
     setState('todos', await TodoService.toggleTodoStatus(todoId, todo))
   }

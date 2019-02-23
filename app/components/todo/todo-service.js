@@ -8,6 +8,7 @@ function logError(e) {
 }
 
 export default class TodoService {
+
 	static getTodos() {
 		console.log("Getting the Todo List")
 		todoApi.get('')
@@ -20,9 +21,9 @@ export default class TodoService {
 
 	static addTodo(todo) {
 		todoApi.post('', todo)
-			.then(function (res) { // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
-				let data = res.data.data
-				return data
+			.then(function (res) {
+				debugger // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
+				TodoService.getTodos()
 			})
 			.catch(logError)
 	}

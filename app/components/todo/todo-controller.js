@@ -4,14 +4,15 @@ function getTodos() {
 	Store.getTodos()
 }
 
-function draw(todos) {
-
+function draw() {
+	let todos = Store.Todos
+	console.log('tododoo', todos)
 	var template = ''
 	for (let i = 0; i < todos.length; i++) {
 		let todo = todos[i];
 		template += `
 			<div class="col-4 card">
-				<h3>${todo}</h3>
+				<h3>${todo.description}</h3>
 				<i class="fas fa-dumpster-fire"></i>
 			</div>
 		`
@@ -34,33 +35,23 @@ export default class TodoController {
 
 
 	addTodoFromForm(event) {
-		event.preventDefault() // <-- hey this time its a freebie don't forget this
-		// TAKE THE INFORMATION FORM THE FORM
+		event.preventDefault()
 		var form = event.target
 		var todo = {
 			description: form.description.value
-
 		}
 
-		//PASSES THE NEW TODO TO YOUR SERVICE
-		//DON'T FORGET TO REDRAW THE SCREEN WITH THE NEW TODO
-		//YOU SHOULDN'T NEED TO CHANGE THIS
 		Store.addTodo(todo)
 		Store.getTodos()
-		//^^^^^^^ EXAMPLE OF HOW TO GET YOUR TOODOS AFTER AN EDIT
+
 	}
 
 	toggleTodoStatus(todoId, todo) {
-		// asks the service to edit the todo status
 		Store.toggleTodoStatus(todoId, todo)
-		// YEP THATS IT FOR ME
 	}
 
 	removeTodo(todoId) {
 		Store.deleteTodo(todoId)
-		// ask the service to run the remove todo with this id
-
-		// ^^^^ THIS LINE OF CODE PROBABLY LOOKS VERY SIMILAR TO THE toggleTodoStatus
 	}
 
 
